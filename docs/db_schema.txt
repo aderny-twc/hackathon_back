@@ -1,0 +1,16 @@
+User:
+	name
+	email
+	passwd
+
+Meme:
+	title
+	description
+	image
+	id
+	likes
+	user_id fk
+
+Cat:
+	some...
+
