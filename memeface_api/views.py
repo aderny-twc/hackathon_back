@@ -1,5 +1,5 @@
 from django.contrib.auth.models import User
-from rest_framework import viewsets, status
+from rest_framework import viewsets, status, generics
 from rest_framework.decorators import action
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
@@ -68,3 +68,17 @@ class RatingViewSet(viewsets.ModelViewSet):
 class UserProfileViewSet(viewsets.ModelViewSet):
     queryset = User.objects.all()
     serializer_class = UserProfileSerializer
+
+#
+# ###MEME-RATING view
+# class MemeCreateAPIView(generics.CreateAPIView):
+#     """
+#     Create a new Meme entry with Rating entry
+#     """
+#     queryset = Meme.objects.all()
+#     serializer_class = MemeCreateSerializer
+#
+#
+# class MemeManyViewSet(viewsets.ModelViewSet):
+#     queryset = Rating.objects.all()
+#     serializer_class = MemeManySerializer

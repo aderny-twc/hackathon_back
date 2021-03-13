@@ -8,6 +8,8 @@ router.register('users', UserViewSet)
 router.register('memes', MemeViewSet)
 router.register('ratings', RatingViewSet)
 router.register('user-profile', UserProfileViewSet)
+# router.register('test', MemeManyViewSet)
+# router.register('meme-rating', MemeCreateAPIView)
 
 urlpatterns = [
     path('', include(router.urls)),
