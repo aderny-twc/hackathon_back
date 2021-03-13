@@ -49,4 +49,3 @@ class Rating(models.Model):
         verbose_name = 'Rating'
         verbose_name_plural = "Ratings"
         ordering = ['-created_at']
-
