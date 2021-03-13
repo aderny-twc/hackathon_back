@@ -19,11 +19,9 @@ class UserSerializer(serializers.ModelSerializer):
 
 class MemeSerializer(serializers.ModelSerializer):
     """Список всего контента."""
-    # user = UserSerializer
-
     class Meta:
         model = Meme
-        fields = ('id', 'title', 'image', 'description', 'user', 'like_rating', 'avg_rating', 'created_at')
+        fields = ('id', 'title', 'image', 'description', 'user', 'user_author', 'like_rating', 'avg_rating', 'created_at')
 
     def create(self, validated_data):
         meme = Meme.objects.create(**validated_data)

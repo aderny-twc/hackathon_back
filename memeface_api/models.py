@@ -27,6 +27,9 @@ class Meme(models.Model):
         else:
             return 0
 
+    def user_author(self):
+        return self.user.username
+
     class Meta:
         verbose_name = 'Meme'
         verbose_name_plural = "Memes"
