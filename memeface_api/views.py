@@ -6,7 +6,7 @@ from rest_framework.response import Response
 from rest_framework.authentication import TokenAuthentication
 
 from .models import Meme, Rating
-from .serializers import MemeSerializer, RatingSerializer, UserSerializer
+from .serializers import MemeSerializer, RatingSerializer, UserSerializer, UserProfileSerializer
 
 
 class UserViewSet(viewsets.ModelViewSet):
@@ -17,8 +17,8 @@ class UserViewSet(viewsets.ModelViewSet):
 class MemeViewSet(viewsets.ModelViewSet):
     queryset = Meme.objects.all()
     serializer_class = MemeSerializer
-    authentication_classes = (TokenAuthentication, )
-    permission_classes = (IsAuthenticated, )
+    authentication_classes = (TokenAuthentication,)
+    permission_classes = (IsAuthenticated,)
 
     def perform_create(self, serializer):
         return serializer.save(user=self.request.user)
@@ -53,8 +53,8 @@ class MemeViewSet(viewsets.ModelViewSet):
 class RatingViewSet(viewsets.ModelViewSet):
     queryset = Rating.objects.all()
     serializer_class = RatingSerializer
-    authentication_classes = (TokenAuthentication, )
-    permission_classes = (IsAuthenticated, )
+    authentication_classes = (TokenAuthentication,)
+    permission_classes = (IsAuthenticated,)
 
     def update(self, request, *args, **kwargs):
         response = {'message': 'You can\'t update rating like that'}
@@ -63,3 +63,8 @@ class RatingViewSet(viewsets.ModelViewSet):
     def create(self, request, *args, **kwargs):
         response = {'message': 'You can\'t create rating like that'}
         return Response(response, status=status.HTTP_400_BAD_REQUEST)
+
+
+class UserProfileViewSet(viewsets.ModelViewSet):
+    queryset = User.objects.all()
+    serializer_class = UserProfileSerializer

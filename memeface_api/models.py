@@ -38,7 +38,7 @@ class Meme(models.Model):
 class Rating(models.Model):
     meme = models.ForeignKey(Meme, on_delete=models.CASCADE)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
-    like = models.IntegerField(validators=[MinValueValidator(0), MaxValueValidator(5)], default=0, blank=False)
+    like = models.IntegerField(validators=[MinValueValidator(0), MaxValueValidator(1)], default=0, blank=False)
     created_at = models.DateTimeField(auto_now_add=True, verbose_name='Created at')
 
     class Meta:
