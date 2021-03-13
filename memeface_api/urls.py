@@ -7,5 +7,5 @@ router.register('memes', MemeViewSet)
 router.register('ratings', RatingViewSet)
 
 urlpatterns = [
-    path('new/', include(router.urls)),
+    path('', include(router.urls)),
 ]
