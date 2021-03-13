@@ -40,19 +40,6 @@ class RatingSerializer(serializers.ModelSerializer):
         fields = ('id', 'like', 'user', 'meme')
 
 
-# class UserProfileSerializer(serializers.ModelSerializer):
-#     # user = serializers.PrimaryKeyRelatedField(
-#     #     read_only=True,
-#     #     default=serializers.CurrentUserDefault()
-#     # )
-#     # print(dir(user))
-#
-#     user = serializers.PrimaryKeyRelatedField(many=False, read_only=True)
-#
-#     class Meta:
-#         model = Rating
-#         fields = ['meme', 'user', 'like', 'created_at']
-
 class RatingProfileSerializer(serializers.ModelSerializer):
     meme = serializers.ReadOnlyField(source='meme.id')
 
