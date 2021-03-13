@@ -2,22 +2,29 @@ from django.contrib.auth.models import User
 from rest_framework import viewsets, status
 from rest_framework.decorators import action
 from rest_framework.response import Response
+from rest_framework.authentication import TokenAuthentication
 
 from .models import Meme, Rating
-from .serializers import MemeSerializer, RatingSerializer
+from .serializers import MemeSerializer, RatingSerializer, UserSerializer
+
+
+class UserViewSet(viewsets.ModelViewSet):
+    queryset = User.objects.all()
+    serializer_class = UserSerializer
 
 
 class MemeViewSet(viewsets.ModelViewSet):
     queryset = Meme.objects.all()
     serializer_class = MemeSerializer
+    authentication_classes = (TokenAuthentication, )
 
     @action(detail=True, methods=['POST'])
     def rate_meme(self, request, pk=None):
         if 'likes' in request.data:
             meme = Meme.objects.get(id=pk)
             likes = request.data['likes']
-            # user = request.user
-            user = User.objects.get(id=1)
+            user = request.user
+            print('User', user)
 
             try:
                 rating = Rating.objects.get(user=user, meme=meme, )
@@ -41,3 +48,4 @@ class MemeViewSet(viewsets.ModelViewSet):
 class RatingViewSet(viewsets.ModelViewSet):
     queryset = Rating.objects.all()
     serializer_class = RatingSerializer
+    authentication_classes = (TokenAuthentication,)
