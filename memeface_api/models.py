@@ -14,7 +14,6 @@ class Meme(models.Model):
     def like_rating(self):
         # ratings = Rating.objects.filter(meme=self)
         ratings = Rating.objects.filter(meme=self).aggregate(Sum('like'))['like__sum']
-        print(type(ratings))
         return ratings
 
     def avg_rating(self):

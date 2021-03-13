@@ -20,13 +20,16 @@ class MemeViewSet(viewsets.ModelViewSet):
     authentication_classes = (TokenAuthentication, )
     permission_classes = (IsAuthenticated, )
 
+    def perform_create(self, serializer):
+        return serializer.save(user=self.request.user)
+
     @action(detail=True, methods=['POST'])
     def rate_meme(self, request, pk=None):
         if 'likes' in request.data:
             meme = Meme.objects.get(id=pk)
             likes = request.data['likes']
             user = request.user
-            print('User', user)
+            # print('User', user)
 
             try:
                 rating = Rating.objects.get(user=user, meme=meme, )

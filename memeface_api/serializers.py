@@ -19,6 +19,11 @@ class UserSerializer(serializers.ModelSerializer):
 
 class MemeSerializer(serializers.ModelSerializer):
     """Список всего контента."""
+    user = serializers.PrimaryKeyRelatedField(
+        read_only=True,
+        default=serializers.CurrentUserDefault()
+    )
+
     class Meta:
         model = Meme
         fields = ('id', 'title', 'image', 'description', 'user', 'user_author', 'like_rating', 'avg_rating', 'created_at')
