@@ -8,7 +8,7 @@ class Meme(models.Model):
     title = models.CharField(max_length=50)
     description = models.TextField(max_length=400, blank=True)
     image = models.ImageField(upload_to='photos/%Y/%m/%d/', verbose_name='Image', blank=True)
-    user = models.ForeignKey(User, verbose_name="Author", on_delete=models.CASCADE)
+    user = models.ForeignKey(User, verbose_name="Author", on_delete=models.CASCADE, blank=True)
     created_at = models.DateTimeField(auto_now_add=True, verbose_name='Created at')
 
     def like_rating(self):
@@ -49,3 +49,5 @@ class Rating(models.Model):
         verbose_name = 'Rating'
         verbose_name_plural = "Ratings"
         ordering = ['-created_at']
+
+

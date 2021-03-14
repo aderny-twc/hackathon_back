@@ -69,16 +69,3 @@ class UserProfileViewSet(viewsets.ModelViewSet):
     queryset = User.objects.all()
     serializer_class = UserProfileSerializer
 
-#
-# ###MEME-RATING view
-# class MemeCreateAPIView(generics.CreateAPIView):
-#     """
-#     Create a new Meme entry with Rating entry
-#     """
-#     queryset = Meme.objects.all()
-#     serializer_class = MemeCreateSerializer
-#
-#
-# class MemeManyViewSet(viewsets.ModelViewSet):
-#     queryset = Rating.objects.all()
-#     serializer_class = MemeManySerializer
