@@ -1,16 +1,20 @@
-User:
-	name
-	email
-	passwd
+======
+User(django model):
+	username
+	password
 
+======
 Meme:
-	title
-	description
-	image
-	id
-	likes
-	user_id fk
-
-Cat:
-	some...
+	title		varchar
+	description	text
+	image		image
+	created_at	date
+	id		pk
+	user_id		fk
+======
+Rating:
+	meme		fk
+	user		fk
+	like		int (0,1)
+	created_at	date
 
