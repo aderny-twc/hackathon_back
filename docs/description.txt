@@ -1,0 +1,6 @@
+This application is the backend part of the DroidFactory android application https://github.com/GoToHero/DroidFactory.
+The app evaluates content based on the user's facial expressions.
+
+The backend provides interfaces for user registration, storing user information, storing content and user's ratings.
+API interface allows you to save content, delete it, put likes.
+Registration is done through DRF. 
