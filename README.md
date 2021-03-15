@@ -39,8 +39,8 @@ hackaton_back/
 ## Installation
 
 ```
-$ git clone https://github.com/aderny-twc/hackaton_back.git
-$ cd hackaton_back
+$ git clone https://github.com/aderny-twc/hackathon_back.git
+$ cd hackathon_back
 $ python -m venv venv
 $ . venv/bin/activate
 (venv) pip install -r requirements.txt
