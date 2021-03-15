@@ -63,16 +63,19 @@ $ . venv/bin/activate
 
 ## Using the app
 
-http://127.0.0.1:8000/ - server address
-http://127.0.0.1:8000/admin/ - admin page
-http://127.0.0.1:8000/swagger/ - documentation
-http://127.0.0.1:8000/api/v1/ - api link
+- http://127.0.0.1:8000/ - server address
+- http://127.0.0.1:8000/admin/ - admin page
+- http://127.0.0.1:8000/swagger/ - documentation
+- http://127.0.0.1:8000/api/v1/ - api link
 
 ### Heroku
 
-You can test the application at the link:
+*You can test the application at the link:*
+
 https://deez-nuts-back.herokuapp.com/
-Documentation:
+
+*Documentation:*
+
 https://deez-nuts-back.herokuapp.com/swagger/
 
 **The application is fully prepared for deployment on Heroku.**
