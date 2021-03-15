@@ -6,6 +6,11 @@ from .models import Meme, Rating
 
 
 class UserSerializer(serializers.ModelSerializer):
+    """
+    Provides an interface for creating a user.
+    Prevents all users from being displayed.
+    Generates a token for user access. 
+    """
     class Meta:
         model = User
         fields = ('id', 'username', 'password')
@@ -18,16 +23,18 @@ class UserSerializer(serializers.ModelSerializer):
 
 
 class MemeSerializer(serializers.ModelSerializer):
-    """Список всего контента."""
+    """
+    Content fields.
+    Automatically records the current user when a new object is created.
+    """
     user = serializers.PrimaryKeyRelatedField(
         read_only=True,
         default=serializers.CurrentUserDefault()
     )
-    # print(user.pk_field)
+
     class Meta:
         model = Meme
-        fields = (
-        'id', 'title', 'image', 'description', 'user', 'user_author', 'like_rating', 'avg_rating', 'created_at')
+        fields = '__all__'
 
     def create(self, validated_data):
         meme = Meme.objects.create(**validated_data)
@@ -35,12 +42,19 @@ class MemeSerializer(serializers.ModelSerializer):
 
 
 class RatingSerializer(serializers.ModelSerializer):
+    """
+    Rating fields.
+    """
     class Meta:
         model = Rating
         fields = ('id', 'like', 'user', 'meme')
 
 
+### USERS RATINGS SERIALIZATION
 class RatingProfileSerializer(serializers.ModelSerializer):
+    """
+    Combines content and rating objects.
+    """
     meme = serializers.ReadOnlyField(source='meme.id')
 
     class Meta:
@@ -48,15 +62,20 @@ class RatingProfileSerializer(serializers.ModelSerializer):
         fields = '__all__'
 
 
-### USERS RATINGS SERIALIZATION
 class UserProfileSerializer(serializers.ModelSerializer):
-    ratings = RatingProfileSerializer(source='rating_set', many=True, read_only=True)
+    """
+    Provides information about the user.
+    """
+    ratings = RatingProfileSerializer(source='rating_set',
+                                        many=True,
+                                        read_only=True)
 
     class Meta:
         model = User
         fields = ('ratings', 'id', 'username')
 
 
+#TODO: Add automatic content and rating creation.
 class MemeRatingSerializer(serializers.ModelSerializer):
     Ratings = serializers.StringRelatedField(many=True)
 
